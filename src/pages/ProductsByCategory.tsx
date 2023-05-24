@@ -4,15 +4,18 @@ import { useParams } from "react-router";
 
 export default function ProductsByCategory() {
   const { id } = useParams();
-
+  let idString: string = "";
+  if (id) {
+    idString = id;
+  }
   const {
     data: ProductsByCategory,
     isFetching,
     isError,
-  } = useGetProductsByCategoryQuery(parseInt(id));
+  } = useGetProductsByCategoryQuery(parseInt(idString));
 
   return (
-    <div className="m-9">
+    <div className="flex-1">
       ProductsByCategory
       <ul className="mt-4">
         {ProductsByCategory?.map((ProductByCategory) => (

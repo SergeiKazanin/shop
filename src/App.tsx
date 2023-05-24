@@ -1,21 +1,18 @@
 import React from "react";
-import { useGetCategoriesQuery } from "./store/shopAPI";
 import { Outlet } from "react-router";
-import { Link } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import CategoriesMenu from "./components/CategoriesMenu";
 
 function App() {
-  const { data: categories, isFetching, isError } = useGetCategoriesQuery("");
-  console.log(categories);
   return (
-    <div className="m-6">
-      <ul>
-        {categories?.map((category) => (
-          <li key={category.id}>
-            <Link to={`/category/${category.id}`}>{category.name}</Link>
-          </li>
-        ))}
-      </ul>
-      <Outlet />
+    <div className="flex flex-col w-full h-screen  bg-stone-400 font-monserat text-xl">
+      <div className="h-full w-full max-w-screen-lg mx-auto">
+        <Header />
+        <CategoriesMenu />
+        <Outlet />
+        <Footer />
+      </div>
     </div>
   );
 }

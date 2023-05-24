@@ -5,12 +5,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        roboto: ["Roboto"],
-        lato: ["Lato"],
+        monserat: ["Montserrat"],
+        baebneue: ["Bebas Neue"],
       },
-      width: {
-        760: "760px",
-      },
+
       screens: {
         sm: "640px",
         // => @media (min-width: 640px) { ... }
