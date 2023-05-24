@@ -14,7 +14,7 @@ export default function Header() {
     setSearchValue(e.target.value);
     getProductsByTitle(searchValue);
   };
-  console.log(productsByTitle);
+
   return (
     <div className="h-12 flex justify-around items-center">
       <Link to={"/"} className="font-baebneue text-4xl">
@@ -24,6 +24,7 @@ export default function Header() {
         login
         <LoginIcon />
       </span>
+
       <form className="w-[350px] flex items-center border-2 border-black rounded-xl">
         <SearchIcon className="ml-2" />
         <input
@@ -31,12 +32,12 @@ export default function Header() {
           name="search"
           placeholder="Search for anyting..."
           autoComplete="off"
-          className="h-9 mr-2 text-2xl relative w-full outline-none  bg-inherit"
+          className="h-9 mr-2 text-2xl placeholder-black relative w-full outline-none  bg-inherit"
           onChange={handleSearch}
           value={searchValue}
         />
         {searchValue && (
-          <div className="absolute w-[350px] text-base p-3 max-h-80 overflow-y-auto scrollbar bg-slate-300 rounded-xl top-12 z-10 flex flex-col gap-2">
+          <div className="absolute w-[350px] text-lg p-3 max-h-80 overflow-y-auto scrollbar bg-slate-300 rounded-xl top-12 z-10 flex flex-col gap-2">
             {isFetching
               ? "Loading"
               : !productsByTitle?.length
