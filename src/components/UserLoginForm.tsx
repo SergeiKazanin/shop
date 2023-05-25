@@ -49,16 +49,26 @@ export default function UserSignForm() {
   }, [toggleForm, userAdd, userLoad]);
 
   return (
-    <div onClick={(e) => e.stopPropagation()}>
-      <IconButton onClick={() => toggleForm(false)}>
-        <CloseIcon />
-      </IconButton>
-      <div>Login</div>
+    <div
+      onClick={(e) => e.stopPropagation()}
+      className=" z-[21] p-6 flex flex-col gap-3 text-neutral-400  items-center bg-neutral-800 rounded-2xl h-[500px] w-[500px] top-0 right-0"
+    >
+      <div className="flex w-full justify-end">
+        <IconButton onClick={() => toggleForm(false)}>
+          <CloseIcon color="warning" />
+        </IconButton>
+      </div>
+
+      <div className="text-white">Login</div>
 
       {isError && <p>Error try again</p>}
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form
+        className="flex flex-col gap-3 items-center justify-center"
+        onSubmit={(e) => handleSubmit(e)}
+      >
         <div>
           <input
+            className="h-9 p-1 w-[350px] placeholder-black relative  outline-none rounded-xl bg-neutral-700  bg-inherit"
             type="email"
             placeholder="Your email"
             name="email"
@@ -70,6 +80,7 @@ export default function UserSignForm() {
         </div>
         <div>
           <input
+            className="h-9 p-1 w-[350px] placeholder-black relative  outline-none rounded-xl bg-neutral-700  bg-inherit"
             type="password"
             placeholder="Your password"
             name="password"
@@ -80,12 +91,17 @@ export default function UserSignForm() {
           />
         </div>
         <div
-          className="cursor-pointer"
+          className="cursor-pointer hover:text-white"
           onClick={() => toggleTypeForm("signUp")}
         >
           Create an account
         </div>
-        <button type="submit">Login</button>
+        <button
+          className="rounded-xl w-56 text-white bg-violet-700 hover:bg-violet-800 p-2 shadow-md"
+          type="submit"
+        >
+          Login
+        </button>
       </form>
     </div>
   );
