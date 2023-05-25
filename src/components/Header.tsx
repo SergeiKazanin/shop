@@ -6,10 +6,13 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useLazyGetProductsByTitleQuery } from "../store/shopAPI";
 import { useDebounce } from "../hooks/debounce";
 import { useActions } from "../hooks/actions";
+import { useAppSelector } from "../hooks/redux";
 
 export default function Header() {
   const [searchValue, setSearchValue] = useState("");
+  const [userLogo, setUserLogo] = useState("Guest");
   const { toggleForm } = useActions();
+  const { user } = useAppSelector((store) => store.shop);
   const debounced = useDebounce(searchValue);
   const [getProductsByTitle, { isFetching, isError, data: productsByTitle }] =
     useLazyGetProductsByTitleQuery();
@@ -25,9 +28,11 @@ export default function Header() {
     return () => {};
   }, [debounced, getProductsByTitle]);
 
-  const handleLoginUser = () => {
-    toggleForm(true);
-  };
+  useEffect(() => {
+    if (!user?.name) return;
+    setUserLogo(user.name);
+    return () => {};
+  }, [user]);
 
   return (
     <div className="h-12 flex justify-around items-center">
@@ -35,10 +40,10 @@ export default function Header() {
         SHOP
       </Link>
       <div
-        onClick={handleLoginUser}
+        onClick={() => toggleForm(true)}
         className="relative cursor-pointer hover:text-white"
       >
-        Login
+        {userLogo}
         <LoginIcon />
       </div>
 

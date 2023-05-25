@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useActions } from "../hooks/actions";
 import { useCreateUserMutation } from "../store/shopAPI";
+import CloseIcon from "@mui/icons-material/Close";
+import IconButton from "@mui/material/IconButton";
 
 export default function UserSignForm() {
   const { toggleTypeForm, toggleForm } = useActions();
@@ -11,7 +13,6 @@ export default function UserSignForm() {
     password: "",
     avatar: "",
   });
-  console.log(data);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -24,12 +25,17 @@ export default function UserSignForm() {
 
     if (!isNotEmpty) return;
     createUser(values);
-    //toggleForm(false);
+    toggleForm(false);
   };
 
   return (
     <div>
+      <IconButton onClick={() => toggleForm(false)}>
+        <CloseIcon />
+      </IconButton>
+
       <div>Sign Up</div>
+      {isError && <p>Error try again</p>}
       <form onSubmit={(e) => handleSubmit(e)}>
         <div>
           <input
@@ -42,7 +48,6 @@ export default function UserSignForm() {
             required
           />
         </div>
-
         <div>
           <input
             type="name"
@@ -54,7 +59,6 @@ export default function UserSignForm() {
             required
           />
         </div>
-
         <div>
           <input
             type="password"
@@ -66,7 +70,6 @@ export default function UserSignForm() {
             required
           />
         </div>
-
         <div>
           <input
             type="avatar"
@@ -78,11 +81,9 @@ export default function UserSignForm() {
             required
           />
         </div>
-
         <div className="cursor-pointer" onClick={() => toggleTypeForm("login")}>
           I already have an account
         </div>
-
         <button type="submit">Create an account</button>
       </form>
     </div>
