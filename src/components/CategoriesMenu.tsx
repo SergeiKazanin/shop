@@ -5,7 +5,6 @@ import { useGetCategoriesQuery } from "../store/shopAPI";
 export default function CategorisMenu() {
   const { data: categories, isFetching, isError } = useGetCategoriesQuery("");
 
-  console.log(categories);
   return (
     <div className="w-full">
       <ul>

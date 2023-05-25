@@ -1,13 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const slice = createSlice({
-  name: "diction",
+  name: "shop",
   initialState: {
-    word: "",
+    showForm: false,
+    formType: 'login',
   },
   reducers: {
-    handleChangeText(state, action: {payload:string}) {
-      state.word = action.payload;
+    toggleForm(state, action: {payload:boolean}) {
+      state.showForm = action.payload;
+    },
+    toggleTypeForm(state, action: {payload:string}) {
+      state.formType = action.payload;
     },
   },
 });

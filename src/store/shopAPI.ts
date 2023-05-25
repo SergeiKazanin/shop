@@ -16,7 +16,13 @@ export const shopApi = createApi({
     getProductsByTitle: builder.query<ProductsByCategory, string>({
       query: (title) => `products/?title=${title}`,
     }),
+    createUser: builder.mutation(
+      {query:(user) => ({url:`users/`, method:"POST", body:user}) ,}
+    )
   }),
 });
 
-export const { useGetCategoriesQuery,useGetProductsByCategoryQuery, useLazyGetProductsByTitleQuery } = shopApi;
+export const {  useGetCategoriesQuery,
+                useGetProductsByCategoryQuery, 
+                useLazyGetProductsByTitleQuery,
+                useCreateUserMutation } = shopApi;

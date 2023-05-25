@@ -4,26 +4,43 @@ import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import LoginIcon from "@mui/icons-material/Login";
 import SearchIcon from "@mui/icons-material/Search";
 import { useLazyGetProductsByTitleQuery } from "../store/shopAPI";
+import { useDebounce } from "../hooks/debounce";
+import { useActions } from "../hooks/actions";
 
 export default function Header() {
   const [searchValue, setSearchValue] = useState("");
+  const { toggleForm } = useActions();
+  const debounced = useDebounce(searchValue);
   const [getProductsByTitle, { isFetching, isError, data: productsByTitle }] =
     useLazyGetProductsByTitleQuery();
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     setSearchValue(e.target.value);
-    getProductsByTitle(searchValue);
+  };
+  useEffect(() => {
+    if (debounced.length > 0) {
+      getProductsByTitle(debounced);
+    }
+    return () => {};
+  }, [debounced, getProductsByTitle]);
+
+  const handleLoginUser = () => {
+    toggleForm(true);
   };
 
   return (
     <div className="h-12 flex justify-around items-center">
-      <Link to={"/"} className="font-baebneue text-4xl">
+      <Link to={"/"} className="font-baebneue text-4xl hover:text-white">
         SHOP
       </Link>
-      <span>
-        login
+      <div
+        onClick={handleLoginUser}
+        className="relative cursor-pointer hover:text-white"
+      >
+        Login
         <LoginIcon />
-      </span>
+      </div>
 
       <form className="w-[350px] flex items-center border-2 border-black rounded-xl">
         <SearchIcon className="ml-2" />
@@ -45,6 +62,7 @@ export default function Header() {
               : productsByTitle.map((product) => {
                   return (
                     <Link
+                      key={product.id}
                       to={`/products/${product.id}`}
                       className="flex items-center gap-2"
                     >

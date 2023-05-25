@@ -5,7 +5,7 @@ import { shopApi } from "./shopAPI";
 export const store = configureStore({
   reducer: {
     [shopApi.reducerPath]: shopApi.reducer,
-    diction: sliceReducer,
+    shop: sliceReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(shopApi.middleware),
