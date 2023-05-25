@@ -5,15 +5,11 @@ import CardProduct from "../components/CardProduct";
 
 export default function ProductsByCategory() {
   const { id } = useParams();
-  let idString: string = "";
-  if (id) {
-    idString = id;
-  }
   const {
     data: productsByCategory,
     isFetching,
     isError,
-  } = useGetProductsByCategoryQuery(parseInt(idString));
+  } = useGetProductsByCategoryQuery(id);
 
   return (
     <div className="flex-1">

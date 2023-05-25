@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Categories, ProductsByCategory,loginUser,loginUserResp,User,SignFormUser } from "../models/models"
+import { Categories, ProductsByCategory,loginUser,loginUserResp,User,SignFormUser,ProductByCategory } from "../models/models"
 
 export const shopApi = createApi({
   reducerPath: "shopApi",
@@ -10,11 +10,14 @@ export const shopApi = createApi({
     getCategories: builder.query<Categories, string>({
       query: () => `categories`,
     }),
-    getProductsByCategory: builder.query<ProductsByCategory, number>({
+    getProductsByCategory: builder.query<ProductsByCategory, string|undefined>({
       query: (numberCategory) => `categories/${numberCategory}/products`,
     }),
     getProductsByTitle: builder.query<ProductsByCategory, string>({
       query: (title) => `products/?title=${title}`,
+    }),
+    getProductsById: builder.query<ProductByCategory, string|undefined>({
+      query: (number) => `products/${number}`,
     }),
     createUser: builder.mutation<User,SignFormUser>(
       {query:(user) => ({url:`users/`, method:"POST", body:user}) ,}
@@ -34,4 +37,5 @@ export const {  useGetCategoriesQuery,
                 useLazyGetProductsByTitleQuery,
                 useCreateUserMutation,
                 useLoginUserMutation,
-                useLazyGetUserQuery} = shopApi;
+                useLazyGetUserQuery,
+                useGetProductsByIdQuery} = shopApi;

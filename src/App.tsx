@@ -12,9 +12,7 @@ function App() {
         <UserForm />
         <div className="flex-1 flex bg-neutral-700">
           <CategoriesMenu />
-          <div className="flex-1 bg-neutral-700">
-            <Outlet />
-          </div>
+          <Outlet />
         </div>
 
         <Footer />
