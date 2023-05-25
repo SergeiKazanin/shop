@@ -1,6 +1,7 @@
 import React from "react";
 import { useGetProductsByCategoryQuery } from "../store/shopAPI";
 import { useParams } from "react-router";
+import CardProduct from "../components/CardProduct";
 
 export default function ProductsByCategory() {
   const { id } = useParams();
@@ -9,17 +10,18 @@ export default function ProductsByCategory() {
     idString = id;
   }
   const {
-    data: ProductsByCategory,
+    data: productsByCategory,
     isFetching,
     isError,
   } = useGetProductsByCategoryQuery(parseInt(idString));
 
   return (
     <div className="flex-1">
-      ProductsByCategory
-      <ul className="mt-4">
-        {ProductsByCategory?.map((ProductByCategory) => (
-          <li key={ProductByCategory.id}>{ProductByCategory.title}</li>
+      <ul className="flex flex-wrap justify-between gap-2 px-3">
+        {productsByCategory?.map((productByCategory) => (
+          <li key={productByCategory.id}>
+            <CardProduct product={productByCategory} />
+          </li>
         ))}
       </ul>
     </div>

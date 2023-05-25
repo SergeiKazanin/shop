@@ -7,7 +7,7 @@ export default function CategorisMenu() {
   const { data: categories, isFetching, isError } = useGetCategoriesQuery("");
 
   return (
-    <div className="bg-neutral-800 p-5 rounded-xl w-[150px]">
+    <div className="bg-neutral-800 p-5 shadow-lg rounded-xl h-min  flex justify-center items-center w-[150px]">
       <ul>
         {categories?.map((category) => (
           <li key={category.id}>

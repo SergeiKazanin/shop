@@ -10,10 +10,13 @@ function App() {
       <div className="w-full h-full flex flex-col bg-neutral-700 max-w-screen-lg mx-auto">
         <Header />
         <UserForm />
-        <CategoriesMenu />
-        <div className="flex-1 bg-neutral-700">
-          <Outlet />
+        <div className="flex-1 flex bg-neutral-700">
+          <CategoriesMenu />
+          <div className="flex-1 bg-neutral-700">
+            <Outlet />
+          </div>
         </div>
+
         <Footer />
       </div>
     </div>
