@@ -47,7 +47,7 @@ export default function Header() {
         <LoginIcon />
       </div>
 
-      <form className="w-[350px] flex items-center bg-neutral-800 rounded-xl">
+      <form className="w-[350px] flex items-center shadow-lg bg-neutral-800 rounded-xl">
         <SearchIcon className="ml-2" />
         <input
           type="search"

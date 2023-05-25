@@ -107,7 +107,7 @@ export default function UserSignForm() {
           I already have an account
         </div>
         <button
-          className="rounded-xl w-56 text-white bg-violet-700 hover:bg-violet-800 p-2 shadow-md"
+          className="rounded-xl w-56 text-white bg-purple-700 hover:bg-purple-800 p-2 shadow-md"
           type="submit"
         >
           Create an account
