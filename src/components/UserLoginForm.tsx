@@ -38,11 +38,10 @@ export default function UserSignForm() {
       getUser(token.access_token);
     }
     return () => {};
-  }, [getUser, token]);
+  }, [getUser, token, user.name]);
 
   useEffect(() => {
     if (userLoad) {
-      console.log(userLoad);
       toggleForm(false);
       userAdd(userLoad);
     }
@@ -50,7 +49,7 @@ export default function UserSignForm() {
   }, [toggleForm, userAdd, userLoad]);
 
   return (
-    <div>
+    <div onClick={(e) => e.stopPropagation()}>
       <IconButton onClick={() => toggleForm(false)}>
         <CloseIcon />
       </IconButton>

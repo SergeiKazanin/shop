@@ -9,7 +9,12 @@ export default function UserForm() {
   const { toggleForm } = useActions();
 
   return showForm ? (
-    <div>{formType === "login" ? <UserLoginForm /> : <UserSignForm />}</div>
+    <div
+      onClick={() => toggleForm(false)}
+      className="fixed flex justify-center items-center login-user w-full h-full top-0 left-0 z-20"
+    >
+      {formType === "login" ? <UserLoginForm /> : <UserSignForm />}
+    </div>
   ) : (
     <></>
   );

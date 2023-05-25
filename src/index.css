@@ -8,4 +8,8 @@
     .scrollbar::-webkit-scrollbar {
         display: none;
     }
+    .login-user{
+        background: rgba(33, 33, 35, 0.8);
+    }
+    
 }

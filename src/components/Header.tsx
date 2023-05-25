@@ -35,7 +35,7 @@ export default function Header() {
   }, [user]);
 
   return (
-    <div className="h-12 flex justify-around items-center">
+    <div className="h-24 flex justify-around items-center">
       <Link to={"/"} className="font-baebneue text-4xl hover:text-white">
         SHOP
       </Link>
@@ -47,19 +47,19 @@ export default function Header() {
         <LoginIcon />
       </div>
 
-      <form className="w-[350px] flex items-center border-2 border-black rounded-xl">
+      <form className="w-[350px] flex items-center bg-neutral-800 rounded-xl">
         <SearchIcon className="ml-2" />
         <input
           type="search"
           name="search"
           placeholder="Search for anyting..."
           autoComplete="off"
-          className="h-9 mr-2 text-2xl placeholder-black relative w-full outline-none  bg-inherit"
+          className="h-11 mr-2 text-xl placeholder-neutral-400 relative w-full outline-none  bg-inherit"
           onChange={handleSearch}
           value={searchValue}
         />
         {searchValue && (
-          <div className="absolute w-[350px] text-lg p-3 max-h-80 overflow-y-auto scrollbar bg-slate-300 rounded-xl top-12 z-10 flex flex-col gap-2">
+          <div className="absolute w-[350px] text-lg p-3 max-h-80 overflow-y-auto scrollbar bg-neutral-800 rounded-xl top-20 z-10 flex flex-col gap-2">
             {isFetching
               ? "Loading"
               : !productsByTitle?.length
