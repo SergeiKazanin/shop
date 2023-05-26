@@ -6,15 +6,14 @@ import UserForm from "./components/UserForm";
 
 function App() {
   return (
-    <div className="w-full h-screen bg-neutral-700 text-neutral-400 font-monserat text-xl">
-      <div className="w-full h-full flex flex-col bg-neutral-700 max-w-screen-lg mx-auto">
+    <div className="w-full min-h-screen bg-neutral-700 text-neutral-400 font-monserat text-xl">
+      <div className="w-full min-h-screen flex flex-col bg-neutral-700 max-w-screen-lg mx-auto">
         <Header />
         <UserForm />
-        <div className="flex-1 flex bg-neutral-700">
+        <div className="flex flex-1 bg-neutral-700">
           <CategoriesMenu />
           <Outlet />
         </div>
-
         <Footer />
       </div>
     </div>

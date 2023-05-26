@@ -10,7 +10,7 @@ export default function UserSignForm() {
   const [createUser, { data, isError }] = useCreateUserMutation();
   const [values, setValues] = useState({
     name: "test",
-    email: "test@mail.com",
+    email: "test123@mail.com",
     password: "1234",
     avatar: "https://api.lorem.space/",
   });
@@ -38,7 +38,7 @@ export default function UserSignForm() {
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className=" z-[21] p-6 flex flex-col gap-3 text-neutral-400  items-center bg-neutral-800 rounded-2xl h-[500px] w-[500px] top-0 right-0"
+      className=" z-[21] p-6 flex flex-col gap-3 text-neutral-400  items-center bg-neutral-800 rounded-xl h-[500px] w-[500px] top-0 right-0"
     >
       <div className="flex w-full justify-end">
         <IconButton onClick={() => toggleForm(false)}>

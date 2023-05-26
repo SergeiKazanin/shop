@@ -73,7 +73,7 @@ export default function Header() {
                     >
                       <div
                         style={{ backgroundImage: `url(${product.images[0]})` }}
-                        className="w-[50px] h-[50px] rounded-md bg-center bg-no-repeat bg-cover"
+                        className="w-[50px] h-[50px] rounded-xl bg-center bg-no-repeat bg-cover"
                       ></div>
                       <div>{product.title}</div>
                     </Link>

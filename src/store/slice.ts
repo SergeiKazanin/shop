@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { User, loginUserResp } from "../models/models"
+import { User, loginUserResp, ProductsByCategory,ProductByCategory } from "../models/models"
+
 
 const slice = createSlice({
   name: "shop",
@@ -8,6 +9,7 @@ const slice = createSlice({
     formType: 'login',
     user:{} as User,
     token:{} as loginUserResp,
+    card:[] as ProductsByCategory,
   },
   reducers: {
     toggleForm(state, action: {payload:boolean}) {
@@ -22,6 +24,9 @@ const slice = createSlice({
     userAdd(state, action: {payload:User}) {
       state.user = action.payload;
     },
+    addToCart(state, action:{payload:ProductByCategory}){
+      state.card.push(action.payload);
+    }
   },
 });
 

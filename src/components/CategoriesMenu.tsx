@@ -7,15 +7,15 @@ export default function CategorisMenu() {
   const { data: categories, isFetching, isError } = useGetCategoriesQuery("");
 
   return (
-    <div className="bg-neutral-800 p-5 shadow-lg rounded-xl h-min  flex justify-center items-center w-[150px]">
-      <ul>
+    <div className="bg-neutral-800 p-5 shadow-lg rounded-xl h-min flex justify-center items-center w-[180px]">
+      <ul className="flex flex-col gap-2">
         {categories?.map((category) => (
           <li key={category.id}>
             <NavLink
               className="hover:text-white"
               to={`/category/${category.id}`}
               style={({ isActive }) => ({
-                color: isActive ? "#FFFFFF" : "inherit",
+                color: isActive ? "#FFFFFF" : "",
               })}
             >
               {category.name}

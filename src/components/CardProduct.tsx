@@ -9,10 +9,10 @@ export default function CardProduct({
 }) {
   return (
     <Link to={`/products/${product.id}`}>
-      <div className="w-[200px] h-[300px] flex flex-col shadow-xl overflow-hidden rounded-xl bg-neutral-800">
+      <div className="w-[202px] h-[350px] flex flex-col shadow-xl overflow-hidden rounded-xl bg-neutral-800">
         <div
           style={{ backgroundImage: `url(${product.images[0]})` }}
-          className="w-full h-[190px] bg-center bg-no-repeat bg-cover"
+          className="w-full h-[230px] bg-center bg-no-repeat bg-cover"
         ></div>
         <div className="p-3  ">
           <p className="text-lg">{product.title}</p>
