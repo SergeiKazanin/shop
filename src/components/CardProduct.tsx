@@ -14,9 +14,11 @@ export default function CardProduct({
           style={{ backgroundImage: `url(${product.images[0]})` }}
           className="w-full h-[230px] bg-center bg-no-repeat bg-cover"
         ></div>
-        <div className="p-3  ">
-          <p className="text-lg">{product.title}</p>
-          <p className="text-amber-700">{product.price} $</p>
+        <div className="p-3 flex flex-1 flex-col">
+          <p className="text-base">{product.title}</p>
+          <p className="text-amber-700 flex-1 flex items-end">
+            {product.price} $
+          </p>
         </div>
       </div>
     </Link>

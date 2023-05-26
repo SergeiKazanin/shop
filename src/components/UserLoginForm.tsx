@@ -3,10 +3,10 @@ import { useActions } from "../hooks/actions";
 import { useAppSelector } from "../hooks/redux";
 import { useLazyGetUserQuery, useLoginUserMutation } from "../store/shopAPI";
 import CloseIcon from "@mui/icons-material/Close";
-import IconButton from "@mui/material/IconButton";
 
 export default function UserSignForm() {
-  const { toggleTypeForm, toggleForm, tokenAdd, userAdd } = useActions();
+  const { toggleTypeForm, toggleForm, tokenAdd, userAdd, snakeOn } =
+    useActions();
   const { token, user } = useAppSelector((store) => store.shop);
   const [loginUser, { data: loginUserResp, isError }] = useLoginUserMutation();
   const [getUser, { data: userLoad }] = useLazyGetUserQuery();
@@ -44,6 +44,7 @@ export default function UserSignForm() {
     if (userLoad) {
       toggleForm(false);
       userAdd(userLoad);
+      snakeOn(true);
     }
     return () => {};
   }, [toggleForm, userAdd, userLoad]);
@@ -53,10 +54,11 @@ export default function UserSignForm() {
       onClick={(e) => e.stopPropagation()}
       className=" z-[21] p-6 flex flex-col gap-3 text-neutral-400  items-center bg-neutral-800 rounded-xl h-[500px] w-[500px] top-0 right-0"
     >
-      <div className="flex w-full justify-end">
-        <IconButton onClick={() => toggleForm(false)}>
-          <CloseIcon color="warning" />
-        </IconButton>
+      <div
+        onClick={() => toggleForm(false)}
+        className="flex w-full justify-end hover:text-white cursor-pointer"
+      >
+        <CloseIcon />
       </div>
 
       <div className="text-white">Login</div>

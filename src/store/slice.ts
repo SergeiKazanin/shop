@@ -10,6 +10,7 @@ const slice = createSlice({
     user:{} as User,
     token:{} as loginUserResp,
     card:[] as ProductsByCategory,
+    snake: false,
   },
   reducers: {
     toggleForm(state, action: {payload:boolean}) {
@@ -24,9 +25,14 @@ const slice = createSlice({
     userAdd(state, action: {payload:User}) {
       state.user = action.payload;
     },
+    snakeOn(state, action: {payload:boolean}) {
+      state.snake = action.payload;
+    },
     addToCart(state, action:{payload:ProductByCategory}){
-      state.card.push(action.payload);
-    }
+      if(!state.card.find((el)=>( el.id === action.payload.id))){
+         state.card.push(action.payload);
+      }     
+    },
   },
 });
 

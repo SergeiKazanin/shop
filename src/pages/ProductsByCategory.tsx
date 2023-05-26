@@ -34,13 +34,7 @@ export default function ProductsByCategory() {
       {isFetching && <CircularProgress />}
       {!isFetching && (
         <>
-          <Pagination
-            color="standard"
-            count={totalPage}
-            page={page}
-            onChange={(_, numPage) => setPage(numPage)}
-          />
-          <ul className="flex flex-wrap justify-stretch gap-2 pl-3">
+          <ul className="flex flex-wrap justify-stretch mb-3 gap-2 pl-3">
             {productsByCategory
               ?.slice(
                 page * totalElementOnPage - totalElementOnPage,

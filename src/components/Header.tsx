@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import LoginIcon from "@mui/icons-material/Login";
 import SearchIcon from "@mui/icons-material/Search";
+import Badge from "@mui/material/Badge";
 import { useLazyGetProductsByTitleQuery } from "../store/shopAPI";
 import { useDebounce } from "../hooks/debounce";
 import { useActions } from "../hooks/actions";
@@ -12,7 +13,7 @@ export default function Header() {
   const [searchValue, setSearchValue] = useState("");
   const [userLogo, setUserLogo] = useState("Guest");
   const { toggleForm } = useActions();
-  const { user } = useAppSelector((store) => store.shop);
+  const { user, card } = useAppSelector((store) => store.shop);
   const debounced = useDebounce(searchValue);
   const [getProductsByTitle, { isFetching, isError, data: productsByTitle }] =
     useLazyGetProductsByTitleQuery();
@@ -70,6 +71,7 @@ export default function Header() {
                       key={product.id}
                       to={`/products/${product.id}`}
                       className="flex items-center gap-2"
+                      onClick={() => setSearchValue("")}
                     >
                       <div
                         style={{ backgroundImage: `url(${product.images[0]})` }}
@@ -82,8 +84,11 @@ export default function Header() {
           </div>
         )}
       </form>
-
-      <ShoppingBasketIcon />
+      <Link to={"/cart"}>
+        <Badge badgeContent={card.length} color="secondary">
+          <ShoppingBasketIcon />
+        </Badge>
+      </Link>
     </div>
   );
 }
