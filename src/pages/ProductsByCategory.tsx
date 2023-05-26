@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import CardProduct from "../components/CardProduct";
 import Pagination from "@mui/material/Pagination";
 import CircularProgress from "@mui/material/CircularProgress";
+import { createTheme } from "@mui/material/styles";
 
 export default function ProductsByCategory() {
   const { id } = useParams();
@@ -34,6 +35,17 @@ export default function ProductsByCategory() {
       {isFetching && <CircularProgress />}
       {!isFetching && (
         <>
+          <Pagination
+            sx={{
+              "& .MuiPaginationItem-root": {
+                color: "#A3A3A3",
+              },
+            }}
+            count={totalPage}
+            page={page}
+            onChange={(_, numPage) => setPage(numPage)}
+            className="mb-3"
+          />
           <ul className="flex flex-wrap justify-stretch mb-3 gap-2 pl-3">
             {productsByCategory
               ?.slice(
@@ -46,12 +58,6 @@ export default function ProductsByCategory() {
                 </li>
               ))}
           </ul>
-          <Pagination
-            color="standard"
-            count={totalPage}
-            page={page}
-            onChange={(_, numPage) => setPage(numPage)}
-          />
         </>
       )}
     </div>

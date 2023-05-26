@@ -11,6 +11,7 @@ import { useAppSelector } from "./hooks/redux";
 function App() {
   const { snakeOn } = useActions();
   const { snake } = useAppSelector((store) => store.shop);
+
   return (
     <div className="w-full min-h-screen bg-neutral-700 text-neutral-400 font-monserat text-xl">
       <div className="w-full min-h-screen flex flex-col bg-neutral-700 max-w-screen-lg mx-auto">
