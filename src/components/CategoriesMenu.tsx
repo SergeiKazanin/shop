@@ -13,7 +13,7 @@ export default function CategorisMenu() {
           <li key={category.id}>
             <NavLink
               className="hover:text-white"
-              to={`/category/${category.id}`}
+              to={`/category/${category.id}/1`}
               style={({ isActive }) => ({
                 color: isActive ? "#FFFFFF" : "",
               })}

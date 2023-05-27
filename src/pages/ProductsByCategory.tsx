@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useGetProductsByCategoryQuery } from "../store/shopAPI";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import CardProduct from "../components/CardProduct";
 import Pagination from "@mui/material/Pagination";
 import CircularProgress from "@mui/material/CircularProgress";
 
 export default function ProductsByCategory() {
-  const { id } = useParams();
-  const [page, setPage] = useState(1);
+  const { id, p } = useParams();
+  let page: number = 1;
+  if (p) {
+    page = parseInt(p);
+  }
+  const navigate = useNavigate();
   const [totalPage, setTotalPage] = useState(0);
   const totalElementOnPage = 8;
 
@@ -23,8 +27,6 @@ export default function ProductsByCategory() {
       x - Math.floor(x) > 0
         ? setTotalPage(Math.floor(x) + 1)
         : setTotalPage(Math.floor(x));
-
-      setPage(1);
     }
     return () => {};
   }, [productsByCategory]);
@@ -55,7 +57,7 @@ export default function ProductsByCategory() {
             }}
             count={totalPage}
             page={page}
-            onChange={(_, numPage) => setPage(numPage)}
+            onChange={(_, numPage) => navigate(`/category/${id}/${numPage}`)}
             className="mt-3"
           />
         </>
