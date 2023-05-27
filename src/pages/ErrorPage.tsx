@@ -4,12 +4,6 @@ export default function ErrorPage() {
   const error = useRouteError();
 
   if (isRouteErrorResponse(error)) {
-    if (error.status === 401) {
-      // ...
-    } else if (error.status === 404) {
-      // ...
-    }
-
     return (
       <div id="error-page">
         <h1>Oops! {error.status}</h1>

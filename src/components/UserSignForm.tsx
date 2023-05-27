@@ -8,8 +8,8 @@ export default function UserSignForm() {
 
   const [createUser, { data, isError }] = useCreateUserMutation();
   const [values, setValues] = useState({
-    name: "test",
-    email: "test123@mail.com",
+    name: "Happy user",
+    email: "user@mail.com",
     password: "1234",
     avatar: "https://api.lorem.space/",
   });
