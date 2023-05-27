@@ -30,7 +30,7 @@ export interface Category {
   creationAt: string
   updatedAt: string
 }
-export interface ProductByCategory {
+export interface ProductByCategory extends quantityProd  {
   id: number
   title: string
   price: number
@@ -39,5 +39,8 @@ export interface ProductByCategory {
   creationAt: string
   updatedAt: string
   category: Category
+}
+export interface quantityProd {
+  quantity: number
 }
 

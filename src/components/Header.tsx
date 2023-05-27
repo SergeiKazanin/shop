@@ -13,7 +13,7 @@ export default function Header() {
   const [searchValue, setSearchValue] = useState("");
   const [userLogo, setUserLogo] = useState("Guest");
   const { toggleForm } = useActions();
-  const { user, card } = useAppSelector((store) => store.shop);
+  const { user, cart } = useAppSelector((store) => store.shop);
   const debounced = useDebounce(searchValue);
   const [getProductsByTitle, { isFetching, isError, data: productsByTitle }] =
     useLazyGetProductsByTitleQuery();
@@ -85,7 +85,7 @@ export default function Header() {
         )}
       </form>
       <Link to={"/cart"}>
-        <Badge badgeContent={card.length} color="secondary">
+        <Badge badgeContent={cart.length} color="secondary">
           <ShoppingBasketIcon />
         </Badge>
       </Link>

@@ -4,7 +4,6 @@ import { useParams } from "react-router";
 import CardProduct from "../components/CardProduct";
 import Pagination from "@mui/material/Pagination";
 import CircularProgress from "@mui/material/CircularProgress";
-import { createTheme } from "@mui/material/styles";
 
 export default function ProductsByCategory() {
   const { id } = useParams();
@@ -39,6 +38,7 @@ export default function ProductsByCategory() {
             sx={{
               "& .MuiPaginationItem-root": {
                 color: "#A3A3A3",
+                fontSize: "1.5rem",
               },
             }}
             count={totalPage}

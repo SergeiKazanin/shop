@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { User, loginUserResp, ProductsByCategory,ProductByCategory } from "../models/models"
-
+import { User, loginUserResp, ProductByCategory,ProductsByCategory } from "../models/models"
 
 const slice = createSlice({
   name: "shop",
@@ -9,7 +8,7 @@ const slice = createSlice({
     formType: 'login',
     user:{} as User,
     token:{} as loginUserResp,
-    card:[] as ProductsByCategory,
+    cart:[] as ProductsByCategory,
     snake: false,
   },
   reducers: {
@@ -29,9 +28,21 @@ const slice = createSlice({
       state.snake = action.payload;
     },
     addToCart(state, action:{payload:ProductByCategory}){
-      if(!state.card.find((el)=>( el.id === action.payload.id))){
-         state.card.push(action.payload);
-      }     
+      let newCart = [...state.cart];
+      const found = state.cart.find((el)=>( el.id === action.payload.id));
+      
+      if (found) {
+        newCart = newCart.map((item) => {
+          return item.id === action.payload.id
+            ? { ...item, quantity: action.payload.quantity || item.quantity + 1 }
+            : item;
+        });
+      } else newCart.push({ ...action.payload, quantity: 1 });
+      
+      state.cart = newCart;      
+    },
+    delToCart(state, action: {payload:ProductByCategory}) {
+      state.cart = state.cart.filter((product)=> product.id !== action.payload.id)
     },
   },
 });

@@ -8,6 +8,7 @@ export default function SingleProduct() {
   const [numImg, setNumImg] = useState(0);
   const { data, isFetching, isError } = useGetProductsByIdQuery(id);
   const { addToCart } = useActions();
+
   return data ? (
     <div className="ml-5 flex w-full shadow-lg rounded-lg p-5 h-min bg-neutral-800">
       <div>
@@ -31,7 +32,9 @@ export default function SingleProduct() {
         <div className="mb-5">{data?.description}</div>
         <div className="mb-5 text-amber-700">{data?.price} $</div>
         <button
-          onClick={() => addToCart(data)}
+          onClick={() => {
+            addToCart(data);
+          }}
           className="rounded-xl w-56 text-white bg-purple-700 hover:bg-purple-800 p-2 shadow-md"
         >
           Add to cart
