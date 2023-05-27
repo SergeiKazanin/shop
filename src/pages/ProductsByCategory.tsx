@@ -34,18 +34,6 @@ export default function ProductsByCategory() {
       {isFetching && <CircularProgress />}
       {!isFetching && (
         <>
-          <Pagination
-            sx={{
-              "& .MuiPaginationItem-root": {
-                color: "#A3A3A3",
-                fontSize: "1.5rem",
-              },
-            }}
-            count={totalPage}
-            page={page}
-            onChange={(_, numPage) => setPage(numPage)}
-            className="mb-3"
-          />
           <ul className="flex flex-wrap justify-stretch mb-3 gap-2 pl-3">
             {productsByCategory
               ?.slice(
@@ -58,6 +46,18 @@ export default function ProductsByCategory() {
                 </li>
               ))}
           </ul>
+          <Pagination
+            sx={{
+              "& .MuiPaginationItem-root": {
+                color: "#A3A3A3",
+                fontSize: "1.5rem",
+              },
+            }}
+            count={totalPage}
+            page={page}
+            onChange={(_, numPage) => setPage(numPage)}
+            className="mt-3"
+          />
         </>
       )}
     </div>
