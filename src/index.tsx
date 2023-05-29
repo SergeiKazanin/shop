@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import { persistor, store } from "./store/store";
 import ProductsByCategory from "./pages/ProductsByCategory";
+import ProductsBy050 from "./pages/ProductsBy050";
 import SingleProduct from "./pages/SingleProduct";
 import Cart from "./pages/Cart";
 import { PersistGate } from "redux-persist/integration/react";
@@ -18,9 +19,14 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
+        path: "categoryrand",
+        element: <ProductsBy050 />,
+      },
+      {
         path: "category/:id/:p",
         element: <ProductsByCategory />,
       },
+
       {
         path: "/products/:id",
         element: <SingleProduct />,

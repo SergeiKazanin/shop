@@ -19,6 +19,9 @@ export const shopApi = createApi({
     getProductsById: builder.query<ProductByCategory, string|undefined>({
       query: (number) => `products/${number}`,
     }),
+    getProducts0_50: builder.query<ProductsByCategory, string>({
+      query: () => "products?offset=0&limit=50",
+    }),
     createUser: builder.mutation<User,SignFormUser>(
       {query:(user) => ({url:`users/`, method:"POST", body:user}) ,}
     ),
@@ -38,4 +41,5 @@ export const {  useGetCategoriesQuery,
                 useCreateUserMutation,
                 useLoginUserMutation,
                 useLazyGetUserQuery,
-                useGetProductsByIdQuery} = shopApi;
+                useGetProductsByIdQuery,
+                useGetProducts0_50Query} = shopApi;
