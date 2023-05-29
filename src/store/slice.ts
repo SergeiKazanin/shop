@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { User, loginUserResp, ProductByCategory,ProductsByCategory } from "../models/models"
 
 const slice = createSlice({
@@ -12,22 +12,22 @@ const slice = createSlice({
     snake: false,
   },
   reducers: {
-    toggleForm(state, action: {payload:boolean}) {
+    toggleForm(state, action: PayloadAction<boolean>) {
       state.showForm = action.payload;
     },
-    toggleTypeForm(state, action: {payload:string}) {
+    toggleTypeForm(state, action: PayloadAction<string>) {
       state.formType = action.payload;
     },
-    tokenAdd(state, action: {payload:loginUserResp}) {
+    tokenAdd(state, action: PayloadAction<loginUserResp>) {
       state.token = action.payload;
     },
-    userAdd(state, action: {payload:User}) {
+    userAdd(state, action: PayloadAction<User>) {
       state.user = action.payload;
     },
-    snakeOn(state, action: {payload:boolean}) {
+    snakeOn(state, action: PayloadAction<boolean>) {
       state.snake = action.payload;
     },
-    addToCart(state, action:{payload:ProductByCategory}){
+    addToCart(state, action:PayloadAction<ProductByCategory>){
       let newCart = [...state.cart];
       const found = state.cart.find((el)=>( el.id === action.payload.id));
       
@@ -41,7 +41,7 @@ const slice = createSlice({
       
       state.cart = newCart;      
     },
-    delToCart(state, action: {payload:ProductByCategory}) {
+    delToCart(state, action: PayloadAction<ProductByCategory>) {
       state.cart = state.cart.filter((product)=> product.id !== action.payload.id)
     },
   },
