@@ -11,16 +11,18 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist'
+import { sliceReducerLocalStore } from './sliceLocalStore';
 
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: [shopApi.reducerPath]
+  blacklist: [shopApi.reducerPath, "shop"]
 }
  
 const rootReducer = combineReducers({
   [shopApi.reducerPath]: shopApi.reducer,
   shop: sliceReducer,
+  shopLocalStore:sliceReducerLocalStore
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

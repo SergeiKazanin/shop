@@ -6,7 +6,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
 export default function Cart() {
-  const { cart } = useAppSelector((store) => store.shop);
+  const { cart } = useAppSelector((store) => store.shopLocalStore);
   const { addToCart, delToCart } = useActions();
   let totalPrice = 0;
 

@@ -5,8 +5,8 @@ export interface loginUser{
     password: string;
 }
 export interface loginUserResp {
-  access_token: string
-  refresh_token: string
+  access_token?: string
+  refresh_token?: string
 }
 
 export interface SignFormUser {
@@ -16,13 +16,13 @@ export interface SignFormUser {
   avatar: string;
 }
 export interface User {
-  id: number
-  email: string
-  password: string
-  name: string
-  role: string
-  avatar: string
-}
+  id?: number
+  email?: string
+  password?: string
+  name?: string
+  role?: string
+  avatar?: string
+} 
 export interface Category {
   id: number
   name: string

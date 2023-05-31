@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
 import { useGetProducts0_50Query } from "../store/shopAPI";
-import { useParams, useNavigate } from "react-router";
 import CardProduct from "../components/CardProduct";
 import CircularProgress from "@mui/material/CircularProgress";
 

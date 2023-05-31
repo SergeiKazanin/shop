@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import LoginIcon from "@mui/icons-material/Login";
@@ -8,14 +8,19 @@ import { useLazyGetProductsByTitleQuery } from "../store/shopAPI";
 import { useDebounce } from "../hooks/debounce";
 import { useActions } from "../hooks/actions";
 import { useAppSelector } from "../hooks/redux";
+import { useAuth } from "../hooks/useAuth";
 
 export default function Header() {
   const [searchValue, setSearchValue] = useState("");
-  const [userLogo, setUserLogo] = useState("Guest");
-  const { toggleForm } = useActions();
-  const { user, cart } = useAppSelector((store) => store.shop);
+  const [userLogo, setUserLogo] = useState("Login");
+  const { toggleForm, userDel, tokenDell, setIsLogin } = useActions();
+  const { isLogin, user, loginInProcess } = useAppSelector(
+    (store) => store.shop
+  );
+  const { cart, token } = useAppSelector((store) => store.shopLocalStore);
+  const { refresh } = useAuth();
   const debounced = useDebounce(searchValue);
-  const [getProductsByTitle, { isFetching, isError, data: productsByTitle }] =
+  const [getProductsByTitle, { isFetching, data: productsByTitle }] =
     useLazyGetProductsByTitleQuery();
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,10 +35,18 @@ export default function Header() {
   }, [debounced, getProductsByTitle]);
 
   useEffect(() => {
-    if (!user?.name) return;
-    setUserLogo(user.name);
+    refresh();
     return () => {};
-  }, [user]);
+  }, [isLogin, refresh, token]);
+
+  useEffect(() => {
+    if (user?.name && isLogin) {
+      setUserLogo(user.name);
+    } else {
+      setUserLogo("Login");
+    }
+    return () => {};
+  }, [isLogin, user]);
 
   return (
     <div className="h-24 flex justify-around items-center">
@@ -47,7 +60,16 @@ export default function Header() {
         {userLogo}
         <LoginIcon />
       </div>
-
+      <button
+        onClick={() => {
+          setIsLogin(false);
+          tokenDell();
+          userDel();
+        }}
+        className="relative cursor-pointer hover:text-white"
+      >
+        Logout
+      </button>
       <form className="w-[350px] flex items-center shadow-lg bg-neutral-800 rounded-xl">
         <SearchIcon className="ml-2" />
         <input

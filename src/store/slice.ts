@@ -7,45 +7,38 @@ const slice = createSlice({
     showForm: false,
     formType: 'login',
     user:{} as User,
-    token:{} as loginUserResp,
-    cart:[] as ProductsByCategory,
     snake: false,
+    isLogin: false,
+    loginInProcess: false,
+    tokenRefr:false
   },
   reducers: {
     toggleForm(state, action: PayloadAction<boolean>) {
       state.showForm = action.payload;
     },
+    setIsLogin(state, action: PayloadAction<boolean>) {
+      state.isLogin = action.payload;
+    },
+    setLoginInProcess(state, action: PayloadAction<boolean>) {
+      state.loginInProcess = action.payload;
+    },
+    setTokenRefr(state, action: PayloadAction<boolean>) {
+      state.tokenRefr = action.payload;
+    },
     toggleTypeForm(state, action: PayloadAction<string>) {
       state.formType = action.payload;
-    },
-    tokenAdd(state, action: PayloadAction<loginUserResp>) {
-      state.token = action.payload;
     },
     userAdd(state, action: PayloadAction<User>) {
       state.user = action.payload;
     },
+    userDel(state) {
+      state.user = {};
+    },
     snakeOn(state, action: PayloadAction<boolean>) {
       state.snake = action.payload;
-    },
-    addToCart(state, action:PayloadAction<ProductByCategory>){
-      let newCart = [...state.cart];
-      const found = state.cart.find((el)=>( el.id === action.payload.id));
-      
-      if (found) {
-        newCart = newCart.map((item) => {
-          return item.id === action.payload.id
-            ? { ...item, quantity: action.payload.quantity || item.quantity + 1 }
-            : item;
-        });
-      } else newCart.push({ ...action.payload, quantity: 1 });
-      
-      state.cart = newCart;      
-    },
-    delToCart(state, action: PayloadAction<ProductByCategory>) {
-      state.cart = state.cart.filter((product)=> product.id !== action.payload.id)
     },
   },
 });
 
-export const actionsDiction = slice.actions;
+export const actionsShop = slice.actions;
 export const sliceReducer = slice.reducer;

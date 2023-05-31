@@ -28,10 +28,12 @@ export const shopApi = createApi({
     loginUser: builder.mutation<loginUserResp,loginUser>(
       {query:(user) => ({url:`auth/login/`, method:"POST", body:user}) ,}
     ),
+    refreshToken: builder.mutation<loginUserResp,string>(
+      {query:(token) => ({url:`auth/refresh-token`,method:"POST", body:{ refreshToken: token }}) }
+    ),
     getUser: builder.query<User,string>(
       {query:(token) => ({url:`auth/profile`,headers: {Authorization: `Bearer ${token}`}}) ,}
     ),
-
   }),
 });
 
@@ -42,4 +44,5 @@ export const {  useGetCategoriesQuery,
                 useLoginUserMutation,
                 useLazyGetUserQuery,
                 useGetProductsByIdQuery,
-                useGetProducts0_50Query} = shopApi;
+                useGetProducts0_50Query,
+                useRefreshTokenMutation} = shopApi;

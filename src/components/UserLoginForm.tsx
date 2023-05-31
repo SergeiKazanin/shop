@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useActions } from "../hooks/actions";
-import { useAppSelector } from "../hooks/redux";
-import { useLazyGetUserQuery, useLoginUserMutation } from "../store/shopAPI";
+import { useLoginUserMutation } from "../store/shopAPI";
 import CloseIcon from "@mui/icons-material/Close";
 
 export default function UserSignForm() {
-  const { toggleTypeForm, toggleForm, tokenAdd, userAdd, snakeOn } =
-    useActions();
-  const { token, user } = useAppSelector((store) => store.shop);
+  const { toggleTypeForm, toggleForm, tokenAdd, snakeOn } = useActions();
   const [loginUser, { data: loginUserResp, isError }] = useLoginUserMutation();
-  const [getUser, { data: userLoad }] = useLazyGetUserQuery();
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -19,35 +15,21 @@ export default function UserSignForm() {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const isNotEmpty = Object.values(values).every((val) => val);
     if (!isNotEmpty) return;
-    await loginUser(values);
+    loginUser(values);
   };
 
   useEffect(() => {
     if (loginUserResp) {
       tokenAdd(loginUserResp);
-    }
-    return () => {};
-  }, [loginUserResp, tokenAdd]);
-
-  useEffect(() => {
-    if (token?.access_token && !user.name) {
-      getUser(token.access_token);
-    }
-    return () => {};
-  }, [getUser, token, user.name]);
-
-  useEffect(() => {
-    if (userLoad) {
-      toggleForm(false);
-      userAdd(userLoad);
       snakeOn(true);
+      toggleForm(false);
     }
     return () => {};
-  }, [toggleForm, userAdd, userLoad]);
+  }, [loginUserResp, snakeOn, toggleForm, tokenAdd]);
 
   return (
     <div

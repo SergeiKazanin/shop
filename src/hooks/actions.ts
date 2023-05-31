@@ -1,9 +1,11 @@
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "@reduxjs/toolkit";
-import { actionsDiction } from "../store/slice";
+import { actionsShop } from "../store/slice";
+import { actionsShopLocalSrore } from "../store/sliceLocalStore";
 
 const actions = {
-  ...actionsDiction,
+  ...actionsShop,
+  ...actionsShopLocalSrore,
 };
 
 export const useActions = () => {

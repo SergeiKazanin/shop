@@ -6,11 +6,10 @@ export default function CategorisMenu() {
   const { data: categories, isFetching, isError } = useGetCategoriesQuery("");
   const [rabdProd, setRabdProd] = useState(true);
   const navigate = useNavigate();
-  let d = true;
+
   useEffect(() => {
     navigate("/categoryrand");
     setRabdProd(false);
-    console.log(232);
     return () => {};
   }, [navigate, rabdProd]);
 
