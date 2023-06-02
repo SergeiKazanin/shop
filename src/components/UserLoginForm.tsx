@@ -34,7 +34,7 @@ export default function UserSignForm() {
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className=" z-[21] p-6 flex flex-col gap-3 text-neutral-400  items-center bg-neutral-800 rounded-xl h-[500px] w-[500px] top-0 right-0"
+      className=" z-[21] p-6 flex flex-col gap-3 text-neutral-400  items-center bg-neutral-800 rounded-xl h-[500px] w-[500px]"
     >
       <div
         onClick={() => toggleForm(false)}

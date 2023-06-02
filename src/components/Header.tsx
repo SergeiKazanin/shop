@@ -55,7 +55,7 @@ export default function Header() {
       </Link>
       <div
         onClick={() => toggleForm(true)}
-        className="relative cursor-pointer hover:text-white"
+        className="cursor-pointer hover:text-white"
       >
         {userLogo}
         <LoginIcon />
@@ -66,7 +66,7 @@ export default function Header() {
           tokenDell();
           userDel();
         }}
-        className="relative cursor-pointer hover:text-white"
+        className="cursor-pointer hover:text-white"
       >
         Logout
       </button>
@@ -75,7 +75,7 @@ export default function Header() {
         <input
           type="search"
           name="search"
-          placeholder="Search for anyting..."
+          placeholder="Search for anything..."
           autoComplete="off"
           className="h-11 mr-2 text-xl placeholder-neutral-400 relative w-full outline-none  bg-inherit"
           onChange={handleSearch}

@@ -10,7 +10,6 @@ const slice = createSlice({
     snake: false,
     isLogin: false,
     loginInProcess: false,
-    tokenRefr:false
   },
   reducers: {
     toggleForm(state, action: PayloadAction<boolean>) {
@@ -21,9 +20,6 @@ const slice = createSlice({
     },
     setLoginInProcess(state, action: PayloadAction<boolean>) {
       state.loginInProcess = action.payload;
-    },
-    setTokenRefr(state, action: PayloadAction<boolean>) {
-      state.tokenRefr = action.payload;
     },
     toggleTypeForm(state, action: PayloadAction<string>) {
       state.formType = action.payload;
