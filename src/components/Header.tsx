@@ -37,7 +37,7 @@ export default function Header() {
   useEffect(() => {
     refresh();
     return () => {};
-  }, [isLogin, refresh, token]);
+  }, [refresh]);
 
   useEffect(() => {
     if (user?.name && isLogin) {
