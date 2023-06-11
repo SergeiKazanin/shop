@@ -4,6 +4,7 @@ import { useActions } from "../hooks/actions";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import { Link } from "react-router-dom";
 
 export default function Cart() {
   const { cart } = useAppSelector((store) => store.shopLocalStore);
@@ -28,7 +29,9 @@ export default function Cart() {
                 style={{ backgroundImage: `url(${product?.images[0]})` }}
                 className="w-[50px] h-[50px] bg-center rounded-lg bg-no-repeat bg-cover"
               ></div>
-              <div>{product.title}</div>
+              <Link className="hover:text-white" to={`/products/${product.id}`}>
+                {product.title}
+              </Link>
             </div>
             <div className="flex flex-1 justify-end gap-3 w-2/5">
               <div className="flex items-center gap-2">
@@ -37,7 +40,7 @@ export default function Cart() {
                     addToCart({ ...product, quantity: Math.max(1, --quant) })
                   }
                 >
-                  <RemoveIcon />
+                  <RemoveIcon className="hover:text-white" />
                 </button>
                 <div className="w-10 flex justify-center">
                   {product.quantity}
@@ -45,12 +48,12 @@ export default function Cart() {
                 <button
                   onClick={() => addToCart({ ...product, quantity: ++quant })}
                 >
-                  <AddIcon />
+                  <AddIcon className="hover:text-white" />
                 </button>
               </div>
 
               <button onClick={() => delToCart(product)}>
-                <DeleteIcon />
+                <DeleteIcon className="hover:text-white" />
               </button>
               <div className="w-28 flex justify-end whitespace-nowrap">
                 {product.price * quant} $

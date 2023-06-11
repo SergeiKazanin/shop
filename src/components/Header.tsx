@@ -108,7 +108,7 @@ export default function Header() {
       </form>
       <Link to={"/cart"}>
         <Badge badgeContent={cart.length} color="secondary">
-          <ShoppingBasketIcon />
+          <ShoppingBasketIcon className="hover:text-white" />
         </Badge>
       </Link>
     </div>
