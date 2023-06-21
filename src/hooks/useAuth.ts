@@ -40,5 +40,5 @@ export const useAuth = () => {
       }
     }
   };
-  return { refresh };
+  return {refresh} ;
 };
