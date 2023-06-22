@@ -13,7 +13,6 @@ export default function ListCart() {
   return (
     <>
       {cart.map((product) => {
-        let quant = product.quantity;
         return (
           <div
             key={product.id}
@@ -34,7 +33,7 @@ export default function ListCart() {
                   onClick={() =>
                     addToCart({
                       ...product,
-                      quantity: Math.max(1, --quant),
+                      quantity: Math.max(1, product.quantity - 1),
                     })
                   }
                 >
@@ -44,7 +43,9 @@ export default function ListCart() {
                   {product.quantity}
                 </div>
                 <button
-                  onClick={() => addToCart({ ...product, quantity: ++quant })}
+                  onClick={() =>
+                    addToCart({ ...product, quantity: product.quantity + 1 })
+                  }
                 >
                   <AddIcon className="hover:text-white" />
                 </button>
